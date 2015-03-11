@@ -13,7 +13,7 @@ public class ex0106 {
 			if(tent < random) System.out.printf("%d é menor que o resultado.\n", tent);
 			else if(tent > random) System.out.printf("%d é maior que o resultado.\n", tent);
 		}
-		System.out.printf("Parabéns! Acabou o jogo em %d tentativa(s)!", counter);
+		System.out.printf("Parabéns! Acabou o jogo em %d tentativa(s)!\n", counter);
 	}
 	public static int numInRange(){
 		int x = -1;

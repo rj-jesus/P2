@@ -9,8 +9,8 @@ public class ex0105 {
 			tmp = sc.nextDouble();
 			result += tmp;
 		}
-		if(counter != 0) System.out.printf("Soma: %.2f. Média: %.2f.", result, result / counter);
-		else System.out.printf("Soma: %.2f.", result);
+		if(counter != 0) System.out.printf("Soma: %.2f. Média: %.2f.\n", result, result / counter);
+		else System.out.printf("Soma: %.2f.\n", result);
 	}
 }
 
