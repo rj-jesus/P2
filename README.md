@@ -1,4 +1,4 @@
 # P2
-Here are hosted most of my solutions to P2 problems.
+Here I'll host most of my solutions to P2 problems. In case any is missing or you find it wrong, please let me know.
 
-By Ricardo Jesus, Universidade de Aveiro
+By Ricardo Jesus, Universidade de Aveiro.
