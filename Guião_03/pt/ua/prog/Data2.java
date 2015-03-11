@@ -3,6 +3,7 @@ import java.util.Calendar;
 
 public class Data2 {
 	private int dias;
+	private boolean isValid;
 	
 	public static int diasDeDiferença(Data2 a, Data2 b){
 		if(a.dias() >= b.dias()) return a.dias() - b.dias();
@@ -42,9 +43,11 @@ public class Data2 {
 			else dias += 365;
 		}
 		dias += hoje.get(Calendar.DAY_OF_YEAR);
+		isValid = true;
 	}
 	public Data2(int dia, int mês, int ano){
 		assert (ano >= 2000 && dataVálida(dia, mês, ano));
+		isValid = dataVálida(dia, mês, ano);
 		dias = dia;
 		for(int i = 0; i < ano - 2000; i++){
 			if(bissexto(i)) dias += 366;
@@ -56,9 +59,12 @@ public class Data2 {
 		for(int i = 1; i < mês; i++) dias += dias_array[i];
 	}
 	public static boolean dataVálida(int dia, int mês, int ano){
-		if(dia > 31 || dia < 0 || mês > 12 || mês < 0) return false;
-		if(dia <= diasNoMês(mês, ano)) return true;
-		return false;
+		if(dia < 1 || mês < 1 || ano > 12 || ano < 0) return false;
+		if(dia > diasNoMês(mês, ano)) return false;
+		return true;
+	}
+	public boolean dataVálida(){
+		return isValid;
 	}
 	public static int diasNoMês(int mês, int ano){
 		int fev = 28;

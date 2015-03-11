@@ -1,24 +1,18 @@
 package pt.ua.prog;
 
 public class Caixa {
+	private static long total;
 	private long[] moedas = new long[15];
 	
 	public long total(){
-		long sum = 0;
-		for(int i = 0; i < moedas.length; i++) sum += moedas[i] * valueAt(i);
-		return sum;
-	}
-	private long teste(long[] a){
-		long sum = 0;
-		for(int i = 0; i < a.length; i++) sum += a[i] * valueAt(i);
-		return sum;
+		return total;
 	}
 	public void print(){
 		for(int i = 0; i < moedas.length; i++){
 			if(moedas[i] != 0) System.out.printf("%d moeda(s)/nota(s) de %.2f euros.\n", moedas[i], (double)valueAt(i) / 100);
 		}
 	}
-	public void print(long[] a){
+	public static void print(long[] a){
 		for(int i = 0; i < a.length; i++){
 			if(a[i] != 0) System.out.printf("%d moeda(s)/nota(s) de %.2f euros.\n", a[i], (double)valueAt(i) / 100);
 		}
@@ -29,30 +23,16 @@ public class Caixa {
 		for(int i = moedas.length - 1; i >= 0; i--){
 			if(amount % valueAt(i) == 0 && moedas[i] != 0){
 				a[i] = amount / valueAt(i);
+				total -= a[i] * valueAt(i);
 				moedas[i] -= amount / valueAt(i);
 				amount -= a[i] * valueAt(i);
 			}
 		}
-		
-		assert teste(a) == amount;
-		
 		return a;
 	}
-/*	public long[] expandLong(long[] a){
-		long[] b = null;
-		if(a == null){
-			b = new long[1];
-		}
-		else{
-			b = new long[a.length + 1];
-			for(int i = 0; i < a.length; i++){
-				b[i] = a[i];
-			}
-		}
-		return b;
-	}
-*/
 	public void addCoins(long money){
+		if(money < 0) throw new AssertionError("Error: Can't add negative amount of coins! Use 'takeMoney' for taking money!");
+		total += money;
 		for(int i = moedas.length - 1; i >= 0; i--){
 			if(money % valueAt(i) == 0){
 				moedas[i] += money / valueAt(i);
@@ -60,7 +40,7 @@ public class Caixa {
 			}
 		}
 	}
-	private long valueAt(int i){
+	private static long valueAt(int i){
 		switch(i){
 			case 0: return 1;
 			case 1: return 2;

@@ -5,47 +5,50 @@ public class ex0306 {
 	static final Scanner sc = new Scanner(System.in);
 	public static void main (String args[]) {
 		boolean recycle = true;
-		Data2 xpto = null;
-		int tmp1, tmp2, tmp3;
+		Data2 data = null;
+		int day, month, year;
 		for(int c, i = 0; recycle; i++){
 			switch(menu(i)){
-				case 1: xpto = new Data2(); break;
+				case 1: data = new Data2(); break;
 				case 2:
 					System.out.print("Dia: ");
-					tmp1 = sc.nextInt();
+					day = sc.nextInt();
 					System.out.print("Mês: ");
-					tmp2 = sc.nextInt();
+					month = sc.nextInt();
 					System.out.print("Ano: ");
-					tmp3 = sc.nextInt();
+					year = sc.nextInt();
 					sc.nextLine();
-					xpto = new Data2(tmp1, tmp2, tmp3);
+					data = new Data2(day, month, year);
 					break;
-				case 3: if(Data2.dataVálida(xpto.dia(), xpto.mês(), xpto.ano())) System.out.print("A data é válida."); else System.out.print("A data é inválida."); break;
-				case 4: xpto.print(); break;
-				case 5: xpto.printExtenso(); break;
-				case 6: xpto.paraOntem(); break;
-				case 7: xpto.paraAmanhã(); break;
+				case 3:
+					if(data.dataVálida()) System.out.print("A data é válida.");
+					else System.out.print("A data não é válida.");
+					break;
+				case 4: data.print(); break;
+				case 5: data.printExtenso(); break;
+				case 6: data.paraOntem(); break;
+				case 7: data.paraAmanhã(); break;
 				case 8:
 					System.out.print("Data a comparar com última introduzida:\n");
 					System.out.print("Dia: ");
-					tmp1 = sc.nextInt();
+					day = sc.nextInt();
 					System.out.print("Mês: ");
-					tmp2 = sc.nextInt();
+					month = sc.nextInt();
 					System.out.print("Ano: ");
-					tmp3 = sc.nextInt();
-					if(xpto.maiorDoQue(new Data2(tmp1, tmp2, tmp3))) System.out.print("A data introduzida é menor.\n");
-					else if(xpto.menorDoQue(new Data2(tmp1, tmp2, tmp3))) System.out.print("A data introduzida é maior.\n");
+					year = sc.nextInt();
+					if(data.maiorDoQue(new Data2(day, month, year))) System.out.print("A data introduzida é menor.\n");
+					else if(data.menorDoQue(new Data2(day, month, year))) System.out.print("A data introduzida é maior.\n");
 					else System.out.print("As duas datas são iguais.\n");
 					break;
 				case 9:
 					System.out.print("Data a comparar com última introduzida:\n");
 					System.out.print("Dia: ");
-					tmp1 = sc.nextInt();
+					day = sc.nextInt();
 					System.out.print("Mês: ");
-					tmp2 = sc.nextInt();
+					month = sc.nextInt();
 					System.out.print("Ano: ");
-					tmp3 = sc.nextInt();
-					System.out.printf("Há %d dia(s) de diferença entre as duas datas.\n", Data2.diasDeDiferença(xpto, new Data2(tmp1, tmp2, tmp3)));
+					year = sc.nextInt();
+					System.out.printf("Há %d dia(s) de diferença entre as duas datas.\n", Data2.diasDeDiferença(data, new Data2(day, month, year)));
 					break;
 				case 0: recycle = false;
 			}

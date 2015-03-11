@@ -18,8 +18,6 @@ public class Nota {
 	public void writeNote(){
 		System.out.printf("%s", text);
 	}
-	
-	
 	public void printNote(){
 		begin.printDate();
 		System.out.print(" <-> ");

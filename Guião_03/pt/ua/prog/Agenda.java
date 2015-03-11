@@ -5,14 +5,7 @@ public class Agenda {
 	
 	public void printNotes(){
 		System.out.print("Agenda:\n");
-		for(int i = 0; i < notes.length; i++){
-			notes[i].begin().printDate();
-			System.out.print(" <-> ");
-			notes[i].end().printDate();
-			System.out.print(": ");
-			notes[i].writeNote();
-			System.out.print("\n");
-		}
+		for(int i = 0; i < notes.length; i++) notes[i].printNote();
 	}
 	private void orderNotes(){
 		for(int i = 0; i < notes.length - 1; i++){
@@ -26,9 +19,11 @@ public class Agenda {
 		}
 	}
 	public Nota[] appointments(Data begin, Data end){
+		if(begin.greaterThan(end)) throw new AssertionError("Error: Can't have an ending date earlier than the begining.");
 		Nota[] a = null;
 		for(int i = 0; i < notes.length; i++){
-			if(notes[i].begin().greaterThan(begin) && notes[i].begin().lessThan(end) || notes[i].end().greaterThan(begin) && notes[i].end().lessThan(end) || notes[i].begin().equalsTo(begin) || notes[i].end().equalsTo(begin) || notes[i].begin().equalsTo(end) || notes[i].end().equalsTo(end)){
+			//if(notes[i].begin().greaterThan(begin) && notes[i].begin().lessThan(end) || notes[i].end().greaterThan(begin) && notes[i].end().lessThan(end) || notes[i].begin().equalsTo(begin) || notes[i].end().equalsTo(begin) || notes[i].begin().equalsTo(end) || notes[i].end().equalsTo(end)){
+			if(!(notes[i].end().lessThan(begin) || notes[i].begin().greaterThan(end))){
 				a = expandList(a);
 				a[a.length - 1] = notes[i];
 			}
