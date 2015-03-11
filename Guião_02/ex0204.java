@@ -5,23 +5,23 @@ public class ex0204 {
 	static final Scanner sc = new Scanner(System.in);
 	public static void main (String args[]) {
 		Contacto[] list = null;
-		String tmp1 = "";
+		String name, num, email;
 		for(; ; ){
 			System.out.print("Nome: ");
-			tmp1 = sc.nextLine();
-			if(tmp1.equals("finish")) break;
+			name = sc.nextLine();
+			if(name.equals("list")) break;
 			System.out.print("Telemóvel: ");
-			String tmp2 = sc.nextLine();
+			num = sc.nextLine();
 			System.out.print("Email: ");
-			String tmp3 = sc.nextLine();
+			email = sc.nextLine();
 			list = expandList(list);
-			list[list.length-1] = new Contacto(tmp1, tmp2, tmp3);
+			list[list.length-1] = new Contacto(name, num, email);
 		}
 		System.out.print("Listagem:\n");
 		for(int i = 0; i < list.length; i++){
 			System.out.printf("%s: %s; %s\n", list[i].nome(), list[i].telefone(), list[i].eMail());
 		}
-		if(list != null) System.out.printf("Contactos: %d\n", list[0].count);
+		if(list != null) System.out.printf("Contactos: %d\n", list[0].count());
 	}
 	public static Contacto[] expandList(Contacto[] a){
 		Contacto[] b = null;

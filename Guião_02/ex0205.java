@@ -11,15 +11,18 @@ public class ex0205 {
 				case 1: xpto = new Data(); break;
 				case 2:
 					System.out.print("Dia: ");
-					int tmp1 = sc.nextInt();
+					int day = sc.nextInt();
 					System.out.print("Mês: ");
-					int tmp2 = sc.nextInt();
+					int month = sc.nextInt();
 					System.out.print("Ano: ");
-					int tmp3 = sc.nextInt();
+					int year = sc.nextInt();
 					sc.nextLine();
-					xpto = new Data(tmp1, tmp2, tmp3);
+					xpto = new Data(day, month, year);
 					break;
-				case 3: if(Data.checkDate(xpto.day(), xpto.month(), xpto.year())) System.out.print("A data é válida."); else System.out.print("A data é inválida."); break;
+				case 3:
+					if(Data.checkDate(xpto.day(), xpto.month(), xpto.year())) System.out.print("A data é válida.");
+					else System.out.print("A data é inválida.");
+					break;
 				case 4: xpto.printDate(); break;
 				case 5: System.out.printf("%s", xpto.writeDate()); break;
 				case 6: xpto.toYesterday(); break;
@@ -39,13 +42,16 @@ public class ex0205 {
 		System.out.print("0. Termina\n");
 		System.out.print("\nNOTA: Se não houver indicação em contrário, todas as operações fazem-se sobre o último objecto criado\n");
 		System.out.print("\nOpção: ");
-		return inRange();
+		return inRange(0, 7);
 	}
-	public static int inRange(){
-		int x = -1;
-		for(; x < 0 || x > 7; ) x = sc.nextInt();
-		sc.nextLine();
-		return x;
+	public static int inRange(int min, int max){
+		for(; ; ){
+			int x = sc.nextInt();
+			if(x >= min && x <= max){
+				sc.nextLine();
+				return x;
+			}
+		}
 	}
 }
 

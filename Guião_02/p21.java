@@ -9,7 +9,7 @@ public class p21 {
 	// Exemplo simples de utilização da class Complexo
 	public static void main(String[] args) {
 		double re, im;
-		if(args != null && args.length >= 2){
+		if(args.length == 2){
 			re = Double.parseDouble(args[0]);
 			im = Double.parseDouble(args[1]);
 		}

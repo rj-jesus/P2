@@ -16,6 +16,5 @@ public class p22
                ": " + cl[i].telefone() + 
                "; " + cl[i].eMail());
       }
-      System.out.printf("%d", cl[0].count);
    }
 }

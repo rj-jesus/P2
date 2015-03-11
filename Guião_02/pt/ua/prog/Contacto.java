@@ -1,47 +1,43 @@
 package pt.ua.prog;
 
 public class Contacto {
-	public static int count = 0;
+	private static int count = 0;
 	
-	private String name = new String();
-	private String num = new String();
-	private String email = new String();
+	private String name;
+	private String num;
+	private String email;
 	
-	public Contacto(String a){
-		if(a.equals("")){
-			System.err.print("Contacto inválido!");
+	public Contacto(String name, String num){
+		if(name.equals("")){
+			System.err.print("Error: Invalid name!\n");
 			System.exit(1);
 		}
-		name = a;
+		this.name = name;
+		this.num = num;
 		count++;
 	}
-	public Contacto(String a, String n){
-		if(a.equals("")){
-			System.err.print("Contacto inválido!");
+	public Contacto(String name, String num, String email){
+		if(name.equals("")){
+			System.err.print("Error: Invalid name!\n");
 			System.exit(1);
 		}
-		name = a;
-		num = n;
-		count++;
-	}
-	public Contacto(String a, String n, String b){
-		if(a.equals("")){
-			System.err.print("Contacto inválido!");
-			System.exit(1);
-		}
-		name = a;
-		num = n;
-		email = b;
+		this.name = name;
+		this.num = num;
+		this.email = email;
 		count++;
 	}
 	public String nome(){
 		return name;
 	}
-	public String telefone(){
-		return num;
+	public int telefone(){
+		return Integer.parseInt(num);
 	}
 	public String eMail(){
+		if(email == null) return "";
 		return email;
+	}
+	public int count(){
+		return count;
 	}
 }
 

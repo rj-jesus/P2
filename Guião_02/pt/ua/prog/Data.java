@@ -46,7 +46,7 @@ public class Data {
 			day = 1;
 			month += 1;
 		}
-		if(month > 13){
+		if(month == 13){
 			month = 1;
 			year += 1;
 		}
@@ -83,8 +83,8 @@ public class Data {
 			case 10: return "Outubro";
 			case 11: return "Novembro";
 			case 12: return "Dezembro";
+			default: throw new AssertionError("Error: Invalid month!");
 		}
-		return "Mês Inválido!";
 	}
 	public int day(){
 		return day;
@@ -96,20 +96,8 @@ public class Data {
 		return year;
 	}
 	public static boolean checkDate(int day, int month, int year){
-		if(day < 1 || day > 31 || month < 1 || month > 12) return false;
-		switch(month){
-			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-				if(day > 31) return false;
-				break;
-			case 4: case 6: case 9: case 11:
-				if(day > 30) return false;
-				break;
-			case 2:
-				if(day < 29) return true;
-				if(leapYear(year)){
-					if(day > 29) return false;
-				}
-		}
+		if(day < 1 || month < 1 || month > 12 || year < 0) return false;
+		if(day > daysInMonth(month, year)) return false;
 		return true;
 	}
 	static int daysInMonth(int month, int year){
@@ -119,13 +107,11 @@ public class Data {
 			case 2:
 				if(leapYear(year)) return 29;
 				return 28;
-			default: System.out.print("Dia inválido.");
+			default: throw new AssertionError("Error: Invalid day!");
 		}
-		return -1;
 	}
 	static boolean leapYear(int year){
-		if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) return true;
-		return false;
+		return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
 	}
 	public void printDate(){
 		System.out.printf("%02d-%02d-%04d", day, month, year);
