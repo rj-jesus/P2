@@ -1,6 +1,4 @@
-OBJ := $(shell find . -name '*.class')
-
 .PHONY : clean
 clean :
-		@echo "Cleaning up *.class files..."
-		@rm -rf $(OBJ)
+	@echo "Cleaning up *.class files..."
+	@find . -type f -name '*.class' -delete
