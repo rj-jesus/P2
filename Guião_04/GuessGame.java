@@ -24,8 +24,6 @@ public class GuessGame
       out.println("No error detected!");
    }
    
-   
-   
 	private int min, max, attempt, counter = 0;
 	public int secretNumber;
 	
@@ -44,12 +42,10 @@ public class GuessGame
 		return max;
 	}
 	public boolean validAttempt(int x){
-		if(x < min || x > max) return false;
-		return true;
+		return x >= min && x <= max;
 	}
 	public boolean finished(){
-		if(attempt == secretNumber) return true;
-		return false;
+		return attempt == secretNumber;
 	}
 	public void play(int x){
 		if(!finished() && validAttempt(x)){
@@ -58,12 +54,10 @@ public class GuessGame
 		}
 	}
 	public boolean attemptIsHigher(){
-		if(attempt > secretNumber) return true;
-		return false;
+		return attempt > secretNumber;
 	}
 	public boolean attemptIsLower(){
-		if(attempt < secretNumber) return true;
-		return false;
+		return attempt < secretNumber;
 	}
 	public int numAttempts(){
 		return counter;
