@@ -74,7 +74,7 @@ public class House {
 		double dist = 0;
 		int divide = 0;
 		for(int i = 0; i < size; i++){
-			for(int j = i; j < size; j++){
+			for(int j = 0; j < size; j++){
 				dist += rooms[i].geomCenter().distTo(rooms[j].geomCenter());
 				divide++;
 			}
