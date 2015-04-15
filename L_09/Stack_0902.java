@@ -2,7 +2,7 @@ public class Stack_0902 {
 	private int[] list = null;
 	private int index;
 	
-	public Stack(int size){
+	public Stack_0902(int size){
 		if(size <= 0) throw new AssertionError();
 		list = new int[size];
 		index = 0;

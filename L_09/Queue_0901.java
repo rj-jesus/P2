@@ -2,7 +2,7 @@ public class Queue_0901 {
 	private char[] letters = null;
 	private int head = -1, tail = -1, size = -1;
 	
-	public ex0901Pile(String text){
+	public Queue_0901(String text){
 		if(text == null) throw new AssertionError();
 		letters = new char[countArraySize(text)];
 		tail = 0;

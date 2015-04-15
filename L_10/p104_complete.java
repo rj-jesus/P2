@@ -1,6 +1,6 @@
 import static java.lang.System.*;
 
-public class p104copy
+public class p104_complete
 {
    public static void main(String[] args)
    {

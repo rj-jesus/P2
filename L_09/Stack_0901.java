@@ -2,7 +2,7 @@ public class Stack_0901 {
 	private char[] letters = null;
 	private int index = -1;
 	
-	public ex0901Stack(String text){
+	public Stack_0901(String text){
 		if(text == null) throw new AssertionError();
 		letters = new char[countArraySize(text)];
 		index = 0;

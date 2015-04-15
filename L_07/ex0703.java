@@ -1,28 +1,43 @@
+import java.util.Scanner;
+
 public class ex0703 {
-	
+	static final Scanner sc = new Scanner(System.in);
 	public static void main (String args[]) {
-		double[] n = new double[args.length];
-		try{
-			for(int i = 0; i < args.length; i++) n[i] = Double.parseDouble(args[i]);
+		if(iGuessIt(0, 100)){
+			System.out.print(" Congratz!\n");
 		}
-		catch(NumberFormatException e){
-			System.err.print("Error: Invalid arguments.\n");
-			System.exit(1);
+		else{
+			System.out.print(" Too bad.\n");
 		}
-		finally{
-			if(n.length == 0){
-				System.out.print("No arguments found. Sum: 0\n");
-				System.exit(0);
-			}
-		}
-		System.out.printf("Sum: %.2f\n", sumRec(n, 0, n.length-1));
 	}
-	public static double sumRec(double[] arr, int start, int end){
-		assert arr != null && start >= 0 && start <= end && end < arr.length;
-		double result = 0;
-		if(start == end) result = arr[start];
-		else result = arr[start] + sumRec(arr, ++start, end);
-		return result;
+	public static int getFeedback(){
+		int n_options = 4, x = -1;
+		for(; x < 0 || x > n_options; ){
+			System.out.print(">>> ");
+			x = sc.nextInt();
+		}
+		return x;
+	}
+	public static boolean iGuessIt(int min, int max){
+		int attempt = min + (int)(Math.random()*(max-min));
+		System.out.printf("Let's see... %d?\n", attempt);
+		switch(getFeedback()){
+			case 0:
+				System.out.print("I'm sorry I couldn't find it...");
+				return false;
+			case 1:
+				System.out.print("Wow! I knew I could do it!");
+				break;
+			case 2:
+				iGuessIt(attempt, max);
+				break;
+			case 3:
+				iGuessIt(min, attempt);
+				break;
+			default:
+				System.err.print("Sorry, I think I had some malfunction... It's better to stop.");
+				System.exit(-1);
+		}
+		return true;
 	}
 }
-
