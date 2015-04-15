@@ -7,7 +7,7 @@ public class ex0705 {
 	public static double sqrt(double n, double inic, double e){
 		assert inic >= 0 : "Error: Invalid initialization value.";
 		if(n < 0) throw new AssertionError("Error: Please use isqrt for that.");
-		return msqrt(Math.abs(n), inic, e);
+		return msqrt(n, inic, e);
 	}
 	public static String isqrt(double n, double inic, double e){
 		assert inic >= 0 : "Error: Invalid initialization value.";
