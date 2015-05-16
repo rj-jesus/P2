@@ -1,0 +1,67 @@
+/**
+ * Uma estrutura de dados de tipo pilha, mas com os métodos alternativos:
+ * - popN(n): retira os n elementos de topo da pilha
+ * - topMatches(seqChars): verifica se os últimos caracteres na pilha
+ *                         coincidem com seqChars
+ * - toString(): devolve uma String com todos os caracteres contidos
+ *               na pilha (desde o mais antigo até ao mais recente)
+ */
+
+public class StackX{
+	private Node<Character> top;
+	private int size;
+	public void push(char value){
+		Node tmp = new Node(value);
+		if(top == null) top = tmp;
+		else{
+			tmp.next = top;
+			top = tmp;
+		}
+		size++;
+	}
+	public boolean topMatches(String pattern){
+		boolean result = false;
+		Node node_characters = this.top;
+		String characters = new String();
+		while(node_characters != null){
+			characters = node_characters.value + characters;
+			if(characters.equals(pattern)){
+				result = true;
+				break;
+			}
+			node_characters = node_characters.next;
+		}
+		return result;
+	}
+	public void popN(int n){
+		if(n > size) throw new AssertionError("Not enough elements in the stack.");
+		else{
+			if(n == size) top = null;
+			else for(int i = 0; i < n; i++) top = top.next;
+			size -= n;
+		}
+	}
+	public char top(){
+		return top.value;
+	}
+	public int size(){
+		return size;
+	}
+	public String toString(){
+		Node node_with_char = this.top;
+		String result_string = new String();
+		while(node_with_char != null){
+			result_string = node_with_char.value + result_string;
+			node_with_char = node_with_char.next;
+		}
+		return result_string;
+	}
+	private class Node<T>{
+		private T value;
+		private Node next;
+		private Node(T value){
+			this.value = value;
+		}
+	}
+}
+
