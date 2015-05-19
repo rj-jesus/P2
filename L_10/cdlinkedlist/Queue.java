@@ -1,46 +1,58 @@
 package cdlinkedlist;
 
-public class Queue<T> {
-	private Node<T> fin = null, fout = null;
-	private int size = 0;
-	
-	public void in(T e){
-		Node<T> n = new Node<T>();
-		n.e = e;
-		if(fout == null) fout = n;
-		else fin.next = n;
-		n.next = fout;
-		n.prev = fin;
-		fout.prev = n;
-		fin = n;
-		size++;
+public class Queue<T>{
+    private Node<T> top;
+    private int size;
+    public void in(T e){
+	Node<T> node = new Node<T>(e);
+	if(isEmpty()){
+	    top = node;
+	    top.prev = top;
+	    top.next = top;
 	}
-	public void out(){
-		if(isEmpty()) throw new AssertionError();
-		if(size == 1) fout = null;
-		else{
-			fout = fout.next;
-			fout.prev = fin;
-			fin.next = fout;
-		}
-		size--;
+	else{
+	    node.prev = top.prev;
+	    node.next = top;
+	    top.prev = node;
+	    node.prev.next = node;
 	}
-	public T peek(){
-		if(isEmpty()) throw new AssertionError();
-		return fout.e;
+	size++;
+    }
+    public void out(){
+	assert !isEmpty(): "Can't delete an element from an empty queue.";
+	top.next.prev = top.prev;
+	top = top.next;
+	size--;
+    }
+    public T peek(){
+	assert !isEmpty(): "Can't retrieve an element from an empty queue.";
+	return top.e;
+    }
+    public int size(){
+	return size;
+    }
+    public boolean isEmpty(){
+	return size == 0;
+    }
+    public void clear(){
+	top = null;
+	size = 0;
+    }
+    public void print(){
+	Node<T> first = top;
+	System.out.print(first.e + " ");
+	first = first.next;
+	while(first != top){
+	    System.out.print(first.e + " ");
+	    first = first.next;
 	}
-	public boolean isEmpty(){
-		return fout == null;
+    }
+    private class Node<T>{
+	T e;
+	Node<T> prev;
+	Node<T> next;
+	private Node(T e){
+	    this.e = e;
 	}
-	public void print(){
-		for(; !isEmpty(); ){
-			System.out.print(peek() + " ");
-			out();
-		}
-	}
-	private class Node<T>{
-		T e;
-		Node<T> prev, next;
-	}
+    }
 }
-
