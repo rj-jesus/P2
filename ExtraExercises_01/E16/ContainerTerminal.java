@@ -17,7 +17,36 @@ public class ContainerTerminal {
     this.max = max;
     numcontainers = 0;
   }
-  
+    public void store(Container container){
+        assert !isFull() : "The terminal is full.";
+        int idx = findOtherStack(-1);
+        sa[idx].push(container);
+        numcontainers++;
+        assert container == sa[idx].top();
+    }
+    public Container retrieve(String type){
+        int idx = findStackContaining(type);
+        Container result = null;
+        if(idx != -1){
+            while(sa[idx].search(type) != 0){
+                sa[findOtherStack(idx)].push(sa[idx].top());
+                sa[idx].pop();
+            }
+            result = sa[idx].top();
+            logContainerInfo(result);
+            sa[idx].pop();
+            numcontainers--;
+        }
+        return result;
+    }
+    public double averageOpsPerContainer(){
+        assert log != null : "Can't get the average of an empty set of data.";
+        return averageOpsPerContainer(log, 0, 0);
+    }
+    private double averageOpsPerContainer(HistoryNode node, int sum, int elements){
+        if(node != null) return averageOpsPerContainer(node.next, sum+node.numops, elements+1);
+        else return sum / elements;
+    }
   /**
    * Is the terminal full?
    * A full terminal must still have enough free space to enable

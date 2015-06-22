@@ -58,7 +58,14 @@ public class ContainerStack {
     }
     return -1;
   }
-  
+    public static void sort(Container[] arr, int start, int end){
+        if(end - start > 1){
+            int mid = (start + end) / 2;
+            sort(arr, start, mid);
+            sort(arr, mid, end);
+            mergeSubarrays(arr, start, mid, end);
+        }
+    }
   
   /**
    * Merge two sorted subvectors: a[start..middle[ with a[middle..end[
@@ -81,5 +88,26 @@ public class ContainerStack {
       b[j++] = a[i2++];
     arraycopy(b, 0, a, start, end-start);
   }
-
+    public String toString(){
+        String result = "";
+        for(int i = 0; i < size; i++) result += "," + array[i].toString();
+        return result.length() > 0 ? result.substring(1) : result;
+    }
+    public int searchRec(String type){
+        return searchRec(type, 0);
+    }
+    private int searchRec(String type, int i){
+        int idx = -1;
+        if(i < size){
+            if(array[i].contains(type)) idx = size - 1 - i;
+            else idx = searchRec(type, i+1);
+        }
+        return idx;
+    }
+    public Container[] containersInStack(){
+        Container[] arr = new Container[size];
+        for(int i = 0; i < size; i++) arr[i] = array[i];
+        sort(arr, 0, size);
+        return arr;
+    }
 }

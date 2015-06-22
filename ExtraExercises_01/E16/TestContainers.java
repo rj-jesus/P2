@@ -46,7 +46,7 @@ public class TestContainers {
     double avgops = term1.averageOpsPerContainer();
     out.printf("averageOpsPerContainer()=%f\n", avgops);
     
-    out.printf("\nTesting another ContainerTerminal using arguments\n");
+   // out.printf("\nTesting another ContainerTerminal using arguments\n");
     int num = 3;
     int max = 5;
     ContainerTerminal term = new ContainerTerminal(num, max);
