@@ -16,6 +16,7 @@ public class PhoneCalls{
                     parseNMS(arr, arg);
                     break;
                 default:
+                    out.print("\n");
                     if(!arr.exists(arg)) err.print("Number " + arg + " not found. Skipped.\n");
                     else{
                         NumberData number = arr.get(arg);
